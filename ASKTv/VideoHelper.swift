@@ -7,8 +7,10 @@
 //
 
 import AVKit
+import AVFoundation
 import UIKit
 import MobileCoreServices
+import Firebase
 
 
 class VideoHelper: NSObject {
@@ -17,11 +19,6 @@ class VideoHelper: NSObject {
     var question: Question! = nil
     
     var data: NSData?
-    
-//    init(viewController: UIViewController) {
-//            super.init()
-//        }
-    
     
     func startCameraFromViewController(viewController: UIViewController, question: Question) -> Bool {
         self.question = question
@@ -37,23 +34,54 @@ class VideoHelper: NSObject {
         cameraController.sourceType = .Camera
         cameraController.mediaTypes = [kUTTypeMovie as NSString as String]
         cameraController.allowsEditing = false
-        
         cameraController.cameraDevice = UIImagePickerControllerCameraDevice.Front
-        
+
         viewController.presentViewController(cameraController, animated: true, completion: nil)
         return true
     }
     
-    func video(videoPath: NSString, didFinishSavingWithError error: NSError?, contextInfo info: AnyObject) {
-        var title = "Success"
-        var message = "Video was saved"
-        if let _ = error {
-            title = "Error"
-            message = "Video failed to save"
+
+    
+    private func handleVideoSelectedForUrl(url: NSURL) {
+        let fileName = NSUUID().UUIDString + ".mov"
+        let uploadTask = FIRStorage.storage().reference().child("VideoAnswers").child(fileName).putFile(url, metadata: nil) { (metadata, error) in
+            guard error == nil else { return }
+            
+            if let videoUrl = metadata?.downloadURL()?.absoluteString {
+                
+//                if let thumbnailImage = self.thumbnailImageForFileUrl(url) {
+//                    print(thumbnailImage)
+//                    print(videoUrl)
+//                }
+                guard let questionKey = self.question.questionFirebaseKey else { return }
+                FirebaseHelper.addVideoAnswer(ref.child("VideoAnswers"), videoUrl: videoUrl, questionKey: questionKey)
+            }
+            
+            
         }
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
-        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Cancel, handler: nil))
-        viewController.presentViewController(alert, animated: true, completion: nil)
+        
+        uploadTask.observeStatus(.Progress) { (snapshot: FIRStorageTaskSnapshot) in
+            print(snapshot.progress?.completedUnitCount)
+        }
+        
+        uploadTask.observeStatus(.Success) { (snapshot: FIRStorageTaskSnapshot) in
+            print("Video upload success")
+        }
+    }
+    
+    private func thumbnailImageForFileUrl(fileUrl: NSURL) -> UIImage? {
+        let asset = AVAsset(URL: fileUrl)
+        let imageGenerator = AVAssetImageGenerator(asset: asset)
+        
+        do {
+            let thumbnailImage = try imageGenerator.copyCGImageAtTime(CMTimeMake(1, 60), actualTime: nil)
+            
+            return UIImage(CGImage: thumbnailImage)
+        } catch let error {
+            print(error)
+        }
+        
+        return nil
     }
     
     
@@ -62,22 +90,11 @@ class VideoHelper: NSObject {
 
 extension VideoHelper: UIImagePickerControllerDelegate {
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
-        print("did pick media with info")
-        let mediaType = info[UIImagePickerControllerMediaType] as! NSString
-        picker.dismissViewControllerAnimated(true, completion: nil)
-        print("video done \(info)")
-        if mediaType == kUTTypeMovie {
-            let url = info[UIImagePickerControllerMediaURL] as! NSURL
-            data = NSData(contentsOfURL: url)
-            
-            //            guard let path = (info[UIImagePickerControllerMediaURL] as! NSURL).path else { return }
-            //            if UIVideoAtPathIsCompatibleWithSavedPhotosAlbum(path) {
-            //                UISaveVideoAtPathToSavedPhotosAlbum(path, self, #selector(video(_:didFinishSavingWithError:contextInfo:)), nil)
-            //            }
-            //        }
-            //    }
-            
+        if let videoUrl = info[UIImagePickerControllerMediaURL] as? NSURL {
+            handleVideoSelectedForUrl(videoUrl)
         }
+        
+        self.viewController.dismissViewControllerAnimated(true, completion: nil)
     }
 }
 

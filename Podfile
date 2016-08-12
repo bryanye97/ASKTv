@@ -7,6 +7,4 @@ target 'ASKTv' do
   pod 'Firebase/Database'
   pod 'Firebase/Auth'
   pod 'Firebase/Storage'
-
-
 end

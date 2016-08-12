@@ -11,9 +11,6 @@ import Firebase
 
 class FirebaseHelper {
 
-
-    
-
     static func createNewUser(rootRef: FIRDatabaseReference) -> FIRDatabaseReference {
         let userRef = rootRef.child("Users").childByAutoId()
         return userRef
@@ -38,6 +35,19 @@ class FirebaseHelper {
     
     static func addQuestion(questionRef: FIRDatabaseReference, fromUser: String, toUser: String, questionString: String) {
         questionRef.childByAutoId().setValue(createQuestionInformationDictionary(fromUser, toUser: toUser, questionString: questionString))
+    }
+    
+    static func createNewVideoAnswer(rootRef: FIRDatabaseReference) -> FIRDatabaseReference {
+        let videoAnswerRef = rootRef.child("VideoAnswers").childByAutoId()
+        return videoAnswerRef
+    }
+    
+    static func createVideoInformationDictionary(videoUrl: String, questionKey: String) -> [String: AnyObject] {
+        return ["videoUrl": videoUrl, "questionKey": questionKey]
+    }
+    
+    static func addVideoAnswer(videoAnswerRef: FIRDatabaseReference, videoUrl: String, questionKey: String) {
+        videoAnswerRef.childByAutoId().setValue(createVideoInformationDictionary(videoUrl, questionKey: questionKey))
     }
 
 }

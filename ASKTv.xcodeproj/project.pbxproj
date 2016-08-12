@@ -22,12 +22,15 @@
 		A204FDC51D53F5DA001AF3D8 /* FirebaseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A204FDC41D53F5DA001AF3D8 /* FirebaseHelper.swift */; };
 		A2232DDF1D55A575000F3617 /* VideoHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2232DDE1D55A575000F3617 /* VideoHelper.swift */; };
 		A268DD621D54343F009F8714 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A268DD611D54343F009F8714 /* Constants.swift */; };
+		A2D1BCEF1D5CFB2500C2C505 /* DiscoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D1BCEE1D5CFB2500C2C505 /* DiscoverViewController.swift */; };
+		A2D1BCF11D5CFCCE00C2C505 /* VideoAnswer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D1BCF01D5CFCCE00C2C505 /* VideoAnswer.swift */; };
 		A2D722DF1D54289D004286F8 /* AskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D722DE1D54289D004286F8 /* AskViewController.swift */; };
 		A2D722E11D5428C3004286F8 /* AskTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D722E01D5428C3004286F8 /* AskTableViewCell.swift */; };
 		A2E0F49D1D567F46003A3754 /* QuestionsContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E0F49C1D567F46003A3754 /* QuestionsContainerViewController.swift */; };
 		A2E0F49F1D5687DF003A3754 /* AnswersContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E0F49E1D5687DF003A3754 /* AnswersContainerViewController.swift */; };
 		A2E0F4A31D568CB0003A3754 /* AnswerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E0F4A21D568CB0003A3754 /* AnswerCollectionViewCell.swift */; };
 		A2E0F4A51D568EB0003A3754 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E0F4A41D568EB0003A3754 /* TabBarViewController.swift */; };
+		A2F7FE0B1D5D1FCD0028AF36 /* DiscoverTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F7FE0A1D5D1FCD0028AF36 /* DiscoverTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,12 +52,15 @@
 		A204FDC41D53F5DA001AF3D8 /* FirebaseHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseHelper.swift; sourceTree = "<group>"; };
 		A2232DDE1D55A575000F3617 /* VideoHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoHelper.swift; sourceTree = "<group>"; };
 		A268DD611D54343F009F8714 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		A2D1BCEE1D5CFB2500C2C505 /* DiscoverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverViewController.swift; sourceTree = "<group>"; };
+		A2D1BCF01D5CFCCE00C2C505 /* VideoAnswer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoAnswer.swift; sourceTree = "<group>"; };
 		A2D722DE1D54289D004286F8 /* AskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AskViewController.swift; sourceTree = "<group>"; };
 		A2D722E01D5428C3004286F8 /* AskTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AskTableViewCell.swift; sourceTree = "<group>"; };
 		A2E0F49C1D567F46003A3754 /* QuestionsContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionsContainerViewController.swift; sourceTree = "<group>"; };
 		A2E0F49E1D5687DF003A3754 /* AnswersContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnswersContainerViewController.swift; sourceTree = "<group>"; };
 		A2E0F4A21D568CB0003A3754 /* AnswerCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnswerCollectionViewCell.swift; sourceTree = "<group>"; };
 		A2E0F4A41D568EB0003A3754 /* TabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
+		A2F7FE0A1D5D1FCD0028AF36 /* DiscoverTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverTableViewCell.swift; sourceTree = "<group>"; };
 		E7257B9E5F71A17522586E73 /* Pods-ASKTv.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ASKTv.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ASKTv/Pods-ASKTv.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -129,6 +135,7 @@
 			children = (
 				A204FDB81D53C13D001AF3D8 /* Question.swift */,
 				A204FDC21D53F4E2001AF3D8 /* User.swift */,
+				A2D1BCF01D5CFCCE00C2C505 /* VideoAnswer.swift */,
 			);
 			name = "Data models";
 			sourceTree = "<group>";
@@ -146,6 +153,7 @@
 		A2D722DC1D542840004286F8 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				A2F7FE0A1D5D1FCD0028AF36 /* DiscoverTableViewCell.swift */,
 				A2D722E01D5428C3004286F8 /* AskTableViewCell.swift */,
 				A204FDBA1D53C390001AF3D8 /* QuestionTableViewCell.swift */,
 				A2E0F4A21D568CB0003A3754 /* AnswerCollectionViewCell.swift */,
@@ -157,6 +165,7 @@
 			isa = PBXGroup;
 			children = (
 				A2E0F4A41D568EB0003A3754 /* TabBarViewController.swift */,
+				A2D1BCEE1D5CFB2500C2C505 /* DiscoverViewController.swift */,
 				A2D722DE1D54289D004286F8 /* AskViewController.swift */,
 				A204FDB61D53C002001AF3D8 /* ProfileViewController.swift */,
 				A2E0F49C1D567F46003A3754 /* QuestionsContainerViewController.swift */,
@@ -208,6 +217,7 @@
 				TargetAttributes = {
 					A204FD9E1D53B9B1001AF3D8 = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = WZ4NEVB3RP;
 					};
 				};
 			};
@@ -299,6 +309,7 @@
 				A2E0F4A51D568EB0003A3754 /* TabBarViewController.swift in Sources */,
 				A204FDC51D53F5DA001AF3D8 /* FirebaseHelper.swift in Sources */,
 				A268DD621D54343F009F8714 /* Constants.swift in Sources */,
+				A2D1BCF11D5CFCCE00C2C505 /* VideoAnswer.swift in Sources */,
 				A204FDB91D53C13D001AF3D8 /* Question.swift in Sources */,
 				A2232DDF1D55A575000F3617 /* VideoHelper.swift in Sources */,
 				A204FDBB1D53C390001AF3D8 /* QuestionTableViewCell.swift in Sources */,
@@ -307,6 +318,8 @@
 				A204FDC11D53E75D001AF3D8 /* SignUpViewController.swift in Sources */,
 				A204FDB71D53C002001AF3D8 /* ProfileViewController.swift in Sources */,
 				A204FDBF1D53E0D7001AF3D8 /* SignInViewController.swift in Sources */,
+				A2F7FE0B1D5D1FCD0028AF36 /* DiscoverTableViewCell.swift in Sources */,
+				A2D1BCEF1D5CFB2500C2C505 /* DiscoverViewController.swift in Sources */,
 				A2E0F4A31D568CB0003A3754 /* AnswerCollectionViewCell.swift in Sources */,
 				A204FDA31D53B9B1001AF3D8 /* AppDelegate.swift in Sources */,
 				A2E0F49D1D567F46003A3754 /* QuestionsContainerViewController.swift in Sources */,
@@ -425,6 +438,7 @@
 			baseConfigurationReference = E7257B9E5F71A17522586E73 /* Pods-ASKTv.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = ASKTv/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.bryanye.ASKTv;
@@ -437,6 +451,7 @@
 			baseConfigurationReference = 7A37E195B1B1ECAB9B274C2A /* Pods-ASKTv.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = ASKTv/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.bryanye.ASKTv;

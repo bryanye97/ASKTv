@@ -18,10 +18,8 @@ class QuestionsContainerViewController: UIViewController {
     var questionsForUser: [Question] = []
     
     var videoHelper = VideoHelper()
-    
-    
+
     override func viewDidLoad() {
-        
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
@@ -38,6 +36,8 @@ class QuestionsContainerViewController: UIViewController {
             
             questionsForUser.observeEventType(.Value) { (snapshot: FIRDataSnapshot) in
                 self.questionsForUser = []
+                print(snapshot.key)
+                
                 for snap in snapshot.children {
                     let question = Question(snap: snap as! FIRDataSnapshot)
                     self.questionsForUser.append(question)
@@ -45,7 +45,7 @@ class QuestionsContainerViewController: UIViewController {
                 self.tableView.reloadData()
             }
         } else if self.tabBarController?.selectedIndex == 2 {
-            let userRef = ref.child("Users")
+            let userRef = ref.child("User")
             let queryForCurrentUser = userRef.queryOrderedByChild("userId").queryEqualToValue(FIRAuth.auth()?.currentUser?.uid)
             queryForCurrentUser.observeSingleEventOfType(.Value, withBlock: { (snapshot: FIRDataSnapshot) in
                 for snap in snapshot.children {
@@ -110,9 +110,7 @@ extension QuestionsContainerViewController: UITableViewDataSource {
 }
 
 extension QuestionsContainerViewController: QuestionTableViewCellDelegate {
-    func takeVideo() {
-        let question = Question(fromUser: "fromUser: random", toUser: "toUser: random", questionString: "TestQuestion?")
-        
+    func takeVideo(question: Question) {
         videoHelper.startCameraFromViewController(self, question: question)
     }
 }

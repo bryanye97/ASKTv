@@ -9,7 +9,7 @@
 import UIKit
 
 protocol QuestionTableViewCellDelegate {
-    func takeVideo()
+    func takeVideo(question: Question)
 }
 
 class QuestionTableViewCell: UITableViewCell {
@@ -27,7 +27,8 @@ class QuestionTableViewCell: UITableViewCell {
     }
     
     @IBAction func answerButtonTapped(sender: AnyObject) {
-        delegate?.takeVideo()
+        guard let question = question else { return }
+        delegate?.takeVideo(question)
     }
     
 
