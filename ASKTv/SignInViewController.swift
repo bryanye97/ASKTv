@@ -37,6 +37,7 @@ class SignInViewController: UIViewController {
                 print("login failed: \(error)")
             } else {
                 print("login succeeded")
+                
                 self.performSegueWithIdentifier("didSignIn", sender: self)
             }
         })

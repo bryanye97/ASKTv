@@ -23,50 +23,64 @@ class QuestionsContainerViewController: UIViewController {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
+        
+//        if user != nil {
+//            let questionsRef = ref.child("Questions")
+//            
+//            guard let userToQuery = self.user else { return }
+//            let questionsForUser = questionsRef.queryOrderedByChild("toUser").queryEqualToValue(userToQuery.userId)
+//            
+//            questionsForUser.observeEventType(.Value) { (snapshot: FIRDataSnapshot) in
+//                self.questionsForUser = []
+//                print(snapshot.key)
+//                
+//                for snap in snapshot.children {
+//                    let question = Question(snap: snap as! FIRDataSnapshot)
+//                    self.questionsForUser.append(question)
+//                }
+//                self.tableView.reloadData()
+//            }
+//        } else {
+//            let userRef = ref.child("Users")
+//            let queryForCurrentUser = userRef.queryOrderedByChild("userId").queryEqualToValue(FIRAuth.auth()?.currentUser?.uid)
+//            queryForCurrentUser.observeSingleEventOfType(.Value, withBlock: { (snapshot: FIRDataSnapshot) in
+//                for snap in snapshot.children {
+//                    self.user = User(snap: snap as! FIRDataSnapshot)
+//                    
+//                    let questionsRef = ref.child("Questions")
+//                    
+//                    guard let userToQuery = self.user else { return }
+//                    let questionsForUser = questionsRef.queryOrderedByChild("toUser").queryEqualToValue(userToQuery.userId)
+//                    
+//                    questionsForUser.observeEventType(.Value) { (snapshot: FIRDataSnapshot) in
+//                        self.questionsForUser = []
+//                        for snap in snapshot.children {
+//                            let question = Question(snap: snap as! FIRDataSnapshot)
+//                            self.questionsForUser.append(question)
+//                        }
+//                        self.tableView.reloadData()
+//                    }
+//                }
+//            })
+//        }
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        if self.tabBarController?.selectedIndex == 1 {
-            let questionsRef = ref.child("Questions")
-            
-            guard let userToQuery = self.user else { return }
-            let questionsForUser = questionsRef.queryOrderedByChild("toUser").queryEqualToValue(userToQuery.userId)
-            
-            questionsForUser.observeEventType(.Value) { (snapshot: FIRDataSnapshot) in
-                self.questionsForUser = []
-                print(snapshot.key)
-                
-                for snap in snapshot.children {
-                    let question = Question(snap: snap as! FIRDataSnapshot)
-                    self.questionsForUser.append(question)
-                }
-                self.tableView.reloadData()
+        let userRef = ref.child("Users")
+        let queryForCurrentUser = userRef.queryOrderedByChild("userId").queryEqualToValue(FIRAuth.auth()?.currentUser?.uid)
+        queryForCurrentUser.observeSingleEventOfType(.Value) { (snapshot: FIRDataSnapshot) in
+            for snap in snapshot.children {
+                self.user = User(snap: snap as! FIRDataSnapshot)
+                print(self.user)
             }
-        } else if self.tabBarController?.selectedIndex == 2 {
-            let userRef = ref.child("User")
-            let queryForCurrentUser = userRef.queryOrderedByChild("userId").queryEqualToValue(FIRAuth.auth()?.currentUser?.uid)
-            queryForCurrentUser.observeSingleEventOfType(.Value, withBlock: { (snapshot: FIRDataSnapshot) in
-                for snap in snapshot.children {
-                    self.user = User(snap: snap as! FIRDataSnapshot)
-                    
-                    let questionsRef = ref.child("Questions")
-                    
-                    guard let userToQuery = self.user else { return }
-                    let questionsForUser = questionsRef.queryOrderedByChild("toUser").queryEqualToValue(userToQuery.userId)
-                    
-                    questionsForUser.observeEventType(.Value) { (snapshot: FIRDataSnapshot) in
-                        self.questionsForUser = []
-                        for snap in snapshot.children {
-                            let question = Question(snap: snap as! FIRDataSnapshot)
-                            self.questionsForUser.append(question)
-                        }
-                        self.tableView.reloadData()
-                    }
-                }
-            })
         }
+//        if self.tabBarController?.selectedIndex == 1 {
+//            
+//        } else if self.tabBarController?.selectedIndex == 2 {
+//            
+//        }
     }
     
     

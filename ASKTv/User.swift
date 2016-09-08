@@ -10,6 +10,8 @@ import Foundation
 import Firebase
 class User {
     
+    static var currentUser: User?
+    
     var username: String?
     var email: String?
     var userId: String?

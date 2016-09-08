@@ -30,6 +30,7 @@ class DiscoverViewController: UIViewController {
         let answersRef = ref.child("VideoAnswers")
         
         answersRef.observeSingleEventOfType(.Value) { (snapshot: FIRDataSnapshot) in
+            self.videoAnswers = []
             for snap in snapshot.children {
                 let videoAnswer = VideoAnswer(snap: snap as! FIRDataSnapshot)
                 self.videoAnswers.append(videoAnswer)

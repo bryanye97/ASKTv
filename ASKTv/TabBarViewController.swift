@@ -14,7 +14,7 @@ class TabBarViewController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        self.delegate = self
+        self.delegate = self
     }
     
 //    override func viewWillAppear(animated: Bool) {
@@ -46,11 +46,11 @@ class TabBarViewController: UITabBarController {
 
 }
 
-//extension TabBarViewController: UITabBarControllerDelegate {
+extension TabBarViewController: UITabBarControllerDelegate {
 //    func tabBarController(tabBarController: UITabBarController, didSelectViewController viewController: UIViewController) {
 //        if viewController is ProfileViewController {
 //            let destinationViewController = viewController as! ProfileViewController
 //            destinationViewController.user = currentUser
 //        }
 //    }
-//}
+}
