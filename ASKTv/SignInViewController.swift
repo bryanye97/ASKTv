@@ -26,19 +26,19 @@ class SignInViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func signInButtonTapped(sender: AnyObject) {
+    @IBAction func signInButtonTapped(_ sender: AnyObject) {
         self.signIn()
     }
     
     
     func signIn() {
-        FIRAuth.auth()?.signInWithEmail(emailTextField.text!, password: passwordTextField.text!, completion: { (user, error) in
+        FIRAuth.auth()?.signIn(withEmail: emailTextField.text!, password: passwordTextField.text!, completion: { (user, error) in
             if error != nil {
                 print("login failed: \(error)")
             } else {
                 print("login succeeded")
                 
-                self.performSegueWithIdentifier("didSignIn", sender: self)
+                self.performSegue(withIdentifier: "didSignIn", sender: self)
             }
         })
     }
@@ -48,10 +48,10 @@ class SignInViewController: UIViewController {
 
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "signUp" {
-            let destinationViewController = segue.destinationViewController as! SignUpViewController
-            destinationViewController.modalTransitionStyle = UIModalTransitionStyle.FlipHorizontal
+            let destinationViewController = segue.destination as! SignUpViewController
+            destinationViewController.modalTransitionStyle = UIModalTransitionStyle.flipHorizontal
         }
     }
  

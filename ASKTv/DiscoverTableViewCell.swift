@@ -33,9 +33,9 @@ class DiscoverTableViewCell: UITableViewCell {
     func handlePlay() {
         print("Played video")
         guard let videoAnswer = videoAnswer else { return }
-        let videoUrl = NSURL(string: videoAnswer.videoUrl)
+        let videoUrl = URL(string: videoAnswer.videoUrl)
         guard let url = videoUrl else { return }
-        let player = AVPlayer(URL: url)
+        let player = AVPlayer(url: url)
         
         let playerLayer = AVPlayerLayer(player: player)
         playerLayer.frame = self.contentView.bounds
@@ -43,7 +43,7 @@ class DiscoverTableViewCell: UITableViewCell {
         
         player.play()
     }
-    @IBAction func playButtonTapped(sender: AnyObject) {
+    @IBAction func playButtonTapped(_ sender: AnyObject) {
         handlePlay()
     }
 
@@ -60,7 +60,7 @@ class DiscoverTableViewCell: UITableViewCell {
 
     }
 
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state

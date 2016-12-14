@@ -9,7 +9,7 @@
 import UIKit
 
 protocol AskTableViewCellDelegate {
-    func presentAnswerTextField(toUser: User)
+    func presentAnswerTextField(_ toUser: User)
 }
 
 class AskTableViewCell: UITableViewCell {
@@ -24,7 +24,7 @@ class AskTableViewCell: UITableViewCell {
         }
     }
     
-    @IBAction func askButtonTapped(sender: AnyObject) {
+    @IBAction func askButtonTapped(_ sender: AnyObject) {
         guard let user = user else { return }
         delegate?.presentAnswerTextField(user)
     }
@@ -34,7 +34,7 @@ class AskTableViewCell: UITableViewCell {
         // Initialization code
     }
 
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state

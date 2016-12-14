@@ -9,7 +9,7 @@
 import UIKit
 
 protocol QuestionTableViewCellDelegate {
-    func takeVideo(question: Question)
+    func takeVideo(_ question: Question)
 }
 
 class QuestionTableViewCell: UITableViewCell {
@@ -26,7 +26,7 @@ class QuestionTableViewCell: UITableViewCell {
         }
     }
     
-    @IBAction func answerButtonTapped(sender: AnyObject) {
+    @IBAction func answerButtonTapped(_ sender: AnyObject) {
         guard let question = question else { return }
         delegate?.takeVideo(question)
     }
@@ -37,7 +37,7 @@ class QuestionTableViewCell: UITableViewCell {
         
     }
 
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state

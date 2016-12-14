@@ -23,7 +23,7 @@ class AskViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         
-        ref.child("Users").observeSingleEventOfType(.Value) { (snapshot: FIRDataSnapshot) in
+        ref.child("Users").observeSingleEvent(of: .value) { (snapshot: FIRDataSnapshot) in
             for snap in snapshot.children {
                 let user = User(snap: snap as! FIRDataSnapshot)
                 self.userArray.append(user)
@@ -38,9 +38,9 @@ class AskViewController: UIViewController {
     }
     
     
-     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "viewProfile" {
-            let destinationViewController = segue.destinationViewController as! ProfileViewController
+            let destinationViewController = segue.destination as! ProfileViewController
             destinationViewController.user = userToView
             print("set ProfileViewController user to another user")
         }
@@ -50,23 +50,23 @@ class AskViewController: UIViewController {
 }
 
 extension AskViewController: UITableViewDelegate {
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         userToView = userArray[indexPath.row]
     
-        self.performSegueWithIdentifier("viewProfile", sender: self)
+        self.performSegue(withIdentifier: "viewProfile", sender: self)
     }
     
 }
 
 extension AskViewController: UITableViewDataSource {
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return userArray.count
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let user = userArray[indexPath.row]
-        let cell = tableView.dequeueReusableCellWithIdentifier("othersCell") as! AskTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "othersCell") as! AskTableViewCell
         cell.user = user
         cell.delegate = self
         return cell
@@ -74,13 +74,13 @@ extension AskViewController: UITableViewDataSource {
 }
 
 extension AskViewController: AskTableViewCellDelegate {
-    func presentAnswerTextField(user: User) {
+    func presentAnswerTextField(_ user: User) {
         print("hello")
         
-        let alertController = UIAlertController(title: "Enter question", message: nil, preferredStyle: .Alert)
-        alertController.addTextFieldWithConfigurationHandler(nil)
+        let alertController = UIAlertController(title: "Enter question", message: nil, preferredStyle: .alert)
+        alertController.addTextField(configurationHandler: nil)
         
-        let submitAction = UIAlertAction(title: "Submit", style: .Default) { (action) in
+        let submitAction = UIAlertAction(title: "Submit", style: .default) { (action) in
             let questionStringTextField = alertController.textFields![0]
             let questionString = questionStringTextField.text ?? ""
             
@@ -93,12 +93,12 @@ extension AskViewController: AskTableViewCellDelegate {
             
         }
         
-        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         alertController.addAction(cancelAction)
         
         alertController.addAction(submitAction)
         
-        self.presentViewController(alertController, animated: true, completion: nil)
+        self.present(alertController, animated: true, completion: nil)
  
     }
 }

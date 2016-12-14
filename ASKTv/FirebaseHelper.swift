@@ -11,42 +11,42 @@ import Firebase
 
 class FirebaseHelper {
 
-    static func createNewUser(rootRef: FIRDatabaseReference) -> FIRDatabaseReference {
+    static func createNewUser(_ rootRef: FIRDatabaseReference) -> FIRDatabaseReference {
         let userRef = rootRef.child("Users").childByAutoId()
         return userRef
     }
     
-    static func createUserInformationDictionary(username: String, email: String, userId: String) -> [String: AnyObject] {
-        return ["username": username, "email": email, "userId": userId]
+    static func createUserInformationDictionary(_ username: String, email: String, userId: String) -> [String: AnyObject] {
+        return ["username": username as AnyObject, "email": email as AnyObject, "userId": userId as AnyObject]
     }
     
-    static func addUser(userRef: FIRDatabaseReference, username: String, email: String, userId: String) {
+    static func addUser(_ userRef: FIRDatabaseReference, username: String, email: String, userId: String) {
         userRef.childByAutoId().setValue(createUserInformationDictionary(username, email: email, userId: userId))
     }
     
-    static func createNewQuestion(rootRef: FIRDatabaseReference) -> FIRDatabaseReference {
+    static func createNewQuestion(_ rootRef: FIRDatabaseReference) -> FIRDatabaseReference {
         let questionRef = rootRef.child("Questions").childByAutoId()
         return questionRef
     }
     
-    static func createQuestionInformationDictionary(fromUser: String, toUser: String, questionString: String) -> [String: AnyObject] {
-        return ["fromUser": fromUser, "toUser": toUser, "questionString": questionString]
+    static func createQuestionInformationDictionary(_ fromUser: String, toUser: String, questionString: String) -> [String: AnyObject] {
+        return ["fromUser": fromUser as AnyObject, "toUser": toUser as AnyObject, "questionString": questionString as AnyObject]
     }
     
-    static func addQuestion(questionRef: FIRDatabaseReference, fromUser: String, toUser: String, questionString: String) {
+    static func addQuestion(_ questionRef: FIRDatabaseReference, fromUser: String, toUser: String, questionString: String) {
         questionRef.childByAutoId().setValue(createQuestionInformationDictionary(fromUser, toUser: toUser, questionString: questionString))
     }
     
-    static func createNewVideoAnswer(rootRef: FIRDatabaseReference) -> FIRDatabaseReference {
+    static func createNewVideoAnswer(_ rootRef: FIRDatabaseReference) -> FIRDatabaseReference {
         let videoAnswerRef = rootRef.child("VideoAnswers").childByAutoId()
         return videoAnswerRef
     }
     
-    static func createVideoInformationDictionary(videoUrl: String, questionKey: String) -> [String: AnyObject] {
-        return ["videoUrl": videoUrl, "questionKey": questionKey]
+    static func createVideoInformationDictionary(_ videoUrl: String, questionKey: String) -> [String: AnyObject] {
+        return ["videoUrl": videoUrl as AnyObject, "questionKey": questionKey as AnyObject]
     }
     
-    static func addVideoAnswer(videoAnswerRef: FIRDatabaseReference, videoUrl: String, questionKey: String) {
+    static func addVideoAnswer(_ videoAnswerRef: FIRDatabaseReference, videoUrl: String, questionKey: String) {
         videoAnswerRef.childByAutoId().setValue(createVideoInformationDictionary(videoUrl, questionKey: questionKey))
     }
 

@@ -65,12 +65,12 @@ class QuestionsContainerViewController: UIViewController {
 //        }
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         let userRef = ref.child("Users")
-        let queryForCurrentUser = userRef.queryOrderedByChild("userId").queryEqualToValue(FIRAuth.auth()?.currentUser?.uid)
-        queryForCurrentUser.observeSingleEventOfType(.Value) { (snapshot: FIRDataSnapshot) in
+        let queryForCurrentUser = userRef.queryOrdered(byChild: "userId").queryEqual(toValue: FIRAuth.auth()?.currentUser?.uid)
+        queryForCurrentUser.observeSingleEvent(of: .value) { (snapshot: FIRDataSnapshot) in
             for snap in snapshot.children {
                 self.user = User(snap: snap as! FIRDataSnapshot)
                 print(self.user)
@@ -103,28 +103,28 @@ class QuestionsContainerViewController: UIViewController {
 }
 
 extension QuestionsContainerViewController: UITableViewDelegate {
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("selected: \(indexPath.row)")
     }
 }
 
 extension QuestionsContainerViewController: UITableViewDataSource {
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let question = questionsForUser[indexPath.row]
-        let cell = tableView.dequeueReusableCellWithIdentifier("questionCell") as! QuestionTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "questionCell") as! QuestionTableViewCell
         cell.question = question
         cell.delegate = self
-        cell.backgroundColor = UIColor.orangeColor()
+        cell.backgroundColor = UIColor.orange
         return cell
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return questionsForUser.count
     }
 }
 
 extension QuestionsContainerViewController: QuestionTableViewCellDelegate {
-    func takeVideo(question: Question) {
+    func takeVideo(_ question: Question) {
         videoHelper.startCameraFromViewController(self, question: question)
     }
 }

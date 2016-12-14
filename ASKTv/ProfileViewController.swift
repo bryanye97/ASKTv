@@ -21,11 +21,11 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        questionsContainerView.hidden = false
-        answersContainerView.hidden = true
+        questionsContainerView.isHidden = false
+        answersContainerView.isHidden = true
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         let questionContainerViewController = self.childViewControllers[0] as! QuestionsContainerViewController
         questionContainerViewController.user = user
@@ -39,17 +39,17 @@ class ProfileViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func questionsButtonTapped(sender: UIButton) {
-        questionsContainerView.hidden = false
-        answersContainerView.hidden = true
+    @IBAction func questionsButtonTapped(_ sender: UIButton) {
+        questionsContainerView.isHidden = false
+        answersContainerView.isHidden = true
     }
     
-    @IBAction func answersButtonTapped(sender: UIButton) {
-        questionsContainerView.hidden = true
-        answersContainerView.hidden = false
+    @IBAction func answersButtonTapped(_ sender: UIButton) {
+        questionsContainerView.isHidden = true
+        answersContainerView.isHidden = false
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 //        if segue.identifier == "viewQuestions" {
 //            print("viewing questions for a user")
 //            let destinationViewController = segue.destinationViewController as! QuestionsContainerViewController

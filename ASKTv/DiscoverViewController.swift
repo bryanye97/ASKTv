@@ -25,11 +25,11 @@ class DiscoverViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         let answersRef = ref.child("VideoAnswers")
         
-        answersRef.observeSingleEventOfType(.Value) { (snapshot: FIRDataSnapshot) in
+        answersRef.observeSingleEvent(of: .value) { (snapshot: FIRDataSnapshot) in
             self.videoAnswers = []
             for snap in snapshot.children {
                 let videoAnswer = VideoAnswer(snap: snap as! FIRDataSnapshot)
@@ -63,15 +63,15 @@ extension DiscoverViewController: UITableViewDelegate {
 }
 
 extension DiscoverViewController: UITableViewDataSource {
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let videoAnswer = videoAnswers[indexPath.row]
-        let cell = tableView.dequeueReusableCellWithIdentifier("cell") as! DiscoverTableViewCell
-        cell.backgroundColor = UIColor.cyanColor()
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! DiscoverTableViewCell
+        cell.backgroundColor = UIColor.cyan
         cell.videoAnswer = videoAnswer
         return cell
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return videoAnswers.count
     }
 }

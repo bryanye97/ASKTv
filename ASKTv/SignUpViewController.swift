@@ -29,8 +29,8 @@ class SignUpViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func signUpButtonTapped(sender: UIButton) {
-        FIRAuth.auth()?.createUserWithEmail(emailTextField.text!, password: passwordTextField.text!, completion: { (user, error) in
+    @IBAction func signUpButtonTapped(_ sender: UIButton) {
+        FIRAuth.auth()?.createUser(withEmail: emailTextField.text!, password: passwordTextField.text!, completion: { (user, error) in
             if error != nil {
                 print("error: \(error)")
             } else {
@@ -43,10 +43,10 @@ class SignUpViewController: UIViewController {
     }
 
 
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "signIn" {
-            let destinationViewController = segue.destinationViewController as! SignInViewController
-            destinationViewController.modalTransitionStyle = UIModalTransitionStyle.FlipHorizontal
+            let destinationViewController = segue.destination as! SignInViewController
+            destinationViewController.modalTransitionStyle = UIModalTransitionStyle.flipHorizontal
         }
     }
 
